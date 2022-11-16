@@ -15,19 +15,27 @@ pub fn arithmetic_formater(problems: Vec<&str>) -> String {
             let operator: String = String::from(problem_array[1]);
 
             let spaces: usize = create_spaces(&first_nb, &second_nb);
-            first_line = format!("{}    {}", first_line, create_line(first_nb, spaces));
+            first_line = format!("{}    {}", &mut first_line, create_line(first_nb, spaces));
         }
 
         first_line
     }
 }
 
-fn create_line(number: String, spaces: usize) -> String {
+fn create_line(mut number: String, spaces: usize) -> String {
     let mut line: String = number;
-    for i in 0..(spaces - line.len()) - 1 {
+    let mut counter: usize = (spaces - line.len()) - 1 ;
+    loop {
+        let mut counter: usize = if counter > 0 {
+            counter = counter - 1;
+            counter
+        } else {
+            break;
+        }; 
         line.push(' ');
-        let extra: &str = line.as_str();
-        line.push_str(extra);
+        let mut extra: &str = &mut line.as_str();
+        line.push_str(&mut extra);
+        
     }
     line
 }
